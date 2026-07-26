@@ -120,6 +120,28 @@ testes rodam só na verificação do Pull Request (`ci.yml`), nunca no deploy (`
 
 ---
 
+## Lint
+
+```bash
+npm run lint
+```
+
+O lint é **de propósito bem permissivo**. Ele não olha estilo: aspas simples ou duplas, ponto e
+vírgula, indentação, tamanho de linha — nada disso importa. Escreva do jeito que preferir.
+
+Ele só reprova o que deixaria sua página quebrada:
+
+| Situação                                      | Resultado                       |
+| --------------------------------------------- | ------------------------------- |
+| Usar um componente que você esqueceu de importar | ❌ erro (a página fica em branco) |
+| Digitar errado o nome de uma variável           | ❌ erro (a página quebra ao abrir) |
+| Deixar um `import` ou variável sem usar         | ⚠️ aviso — passa normalmente     |
+| Código mal formatado, linha gigante, `console.log` | ✅ passa                       |
+
+Avisos (⚠️) nunca reprovam a verificação.
+
+---
+
 ## Vibe coding 🤖
 
 Este repositório foi feito para ser construído com ajuda de IA (Claude Code, Cursor, Copilot...).
@@ -143,7 +165,8 @@ sozinha e já sai fazendo do jeito certo.
 - **`src/projects/index.js`** — encontra as pastas automaticamente com `import.meta.glob`.
   Ninguém precisa editar um arquivo central, então **não dá conflito de merge** entre os PRs.
 - **`.github/workflows/deploy.yml`** — a cada push na `main`, o GitHub compila e publica no Pages.
-- **`.github/workflows/ci.yml`** — a cada Pull Request, roda os testes e confere se o site compila.
+- **`.github/workflows/ci.yml`** — a cada Pull Request, roda os testes, o lint e confere se o site
+  compila.
 - **`.github/workflows/pr-title.yml`** — confere se o título do Pull Request segue o Conventional
   Commits. O título importa porque, no merge com squash, ele vira a mensagem do commit na `main`.
 

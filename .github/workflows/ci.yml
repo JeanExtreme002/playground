@@ -9,7 +9,7 @@ on:
 
 jobs:
   verificar:
-    name: Testes e build
+    name: Testes, build e lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,3 +28,10 @@ jobs:
       - name: O site compila?
         if: always() # roda mesmo se algum teste falhar, para o relatorio ficar completo
         run: npm run build
+
+      # O lint aqui e proposital e liberal: so reprova quando o codigo tem algo
+      # que quebraria a pagina de verdade. Estilo (aspas, ponto e virgula,
+      # identacao) nao e conferido, e avisos nao reprovam nada.
+      - name: Conferir o codigo (lint)
+        if: always()
+        run: npm run lint
