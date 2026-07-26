@@ -71,12 +71,20 @@ export default function MyProject() {
 
 ```bash
 git add .
-git commit -m "Adiciona projeto de Fulano"
+git commit -m "feat: adiciona projeto de fulano"
 git push origin projeto-de-fulano
 ```
 
 Depois é só abrir o Pull Request no GitHub. Quando ele for aprovado e entrar na `main`,
 o site é publicado **sozinho** em cerca de 1 minuto. ✨
+
+> ⚠️ **O título do Pull Request** segue o padrão [Conventional Commits](https://www.conventionalcommits.org/pt-br/):
+> comece com um tipo, dois-pontos e a descrição. Para publicar seu projeto, use
+> `feat: adiciona projeto de fulano`.
+>
+> Uma verificação automática confere isso. Se der ❌, ela mostra o formato certo — clique em
+> **Edit** ao lado do título, corrija, e ela roda de novo sozinha. Tipos aceitos: `feat`, `fix`,
+> `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`.
 
 ---
 
@@ -135,7 +143,9 @@ sozinha e já sai fazendo do jeito certo.
 - **`src/projects/index.js`** — encontra as pastas automaticamente com `import.meta.glob`.
   Ninguém precisa editar um arquivo central, então **não dá conflito de merge** entre os PRs.
 - **`.github/workflows/deploy.yml`** — a cada push na `main`, o GitHub compila e publica no Pages.
-- **`.github/workflows/ci.yml`** — a cada Pull Request, confere se o site ainda compila.
+- **`.github/workflows/ci.yml`** — a cada Pull Request, roda os testes e confere se o site compila.
+- **`.github/workflows/pr-title.yml`** — confere se o título do Pull Request segue o Conventional
+  Commits. O título importa porque, no merge com squash, ele vira a mensagem do commit na `main`.
 
 ### Configuração do GitHub Pages (só o dono do repositório faz, uma vez)
 

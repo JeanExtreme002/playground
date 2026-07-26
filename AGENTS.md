@@ -58,6 +58,18 @@ src/
    com linhas finas e bastante respiro.
 10. Siga a regra de idioma da seção **Idioma** acima.
 
+## Commits e Pull Requests
+
+Mensagens de commit e **títulos de Pull Request** seguem o
+[Conventional Commits](https://www.conventionalcommits.org), em inglês ou português:
+`tipo: descrição em minúsculas`.
+
+- Publicando um projeto novo: `feat: adiciona projeto de fulano`
+- Tipos aceitos: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`,
+  `chore`, `revert`. Escopo é opcional: `feat(sample): ...`
+
+O workflow `.github/workflows/pr-title.yml` valida o título automaticamente.
+
 ## Verificação antes de terminar
 
 ```bash
