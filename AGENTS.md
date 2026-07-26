@@ -74,10 +74,15 @@ O workflow `.github/workflows/pr-title.yml` valida o título automaticamente.
 
 ```bash
 npm test        # Vitest + Testing Library
+npm run lint    # ESLint, configurado para ser permissivo
 npm run build
 ```
 
-Se os dois passarem, está pronto para commit.
+Se os três passarem, está pronto para commit.
+
+O lint não verifica estilo (aspas, ponto e vírgula, indentação) — só erros que quebrariam a
+página, como usar um componente sem importar. Avisos não reprovam. Não adicione regras de
+formatação ao `eslint.config.js`.
 
 Testes de projeto são **opcionais**. Se criar um, coloque-o dentro da pasta do projeto
 (`src/projects/<slug>/index.test.jsx`) e mantenha-o simples: renderizar, simular um clique,
