@@ -1,0 +1,30 @@
+name: Verificar Pull Request
+
+# Antes de aprovar um PR, conferimos duas coisas: se os testes passam e se o
+# site ainda compila. Isto NAO publica nada e NAO impede o deploy — o site no
+# ar continua exatamente como esta ate o PR ser aprovado e entrar na main.
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  verificar:
+    name: Testes e build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar as dependencias
+        run: npm ci
+
+      - name: Rodar os testes
+        run: npm test
+
+      - name: O site compila?
+        if: always() # roda mesmo se algum teste falhar, para o relatorio ficar completo
+        run: npm run build
