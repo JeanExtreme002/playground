@@ -169,6 +169,9 @@ sozinha e já sai fazendo do jeito certo.
   compila.
 - **`.github/workflows/pr-title.yml`** — confere se o título do Pull Request segue o Conventional
   Commits. O título importa porque, no merge com squash, ele vira a mensagem do commit na `main`.
+- **`.github/workflows/delete-branch.yml`** — quando um Pull Request é fechado, apaga a branch dele
+  para a lista de branches não crescer sem parar. A `main` e branches de fork nunca são apagadas, e
+  dá para restaurar pelo próprio PR ("Restore branch").
 
 ### Configuração do GitHub Pages (só o dono do repositório faz, uma vez)
 
