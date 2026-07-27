@@ -8,9 +8,9 @@
 # accepted too — people fill registration forms in creative ways.
 #
 # Usage:
-#   ./scripts/invite-participantes.sh                  # reads people.txt
-#   ./scripts/invite-participantes.sh --dry-run        # shows, sends nothing
-#   ./scripts/invite-participantes.sh outra-lista.txt
+#   ./scripts/invite.sh                  # reads people.txt
+#   ./scripts/invite.sh --dry-run        # shows, sends nothing
+#   ./scripts/invite.sh outra-lista.txt
 #
 # Environment overrides:
 #   REPO=owner/name        target repository (default: JeanExtreme002/playground)
