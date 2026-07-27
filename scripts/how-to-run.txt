@@ -1,2 +1,2 @@
-./scripts/invite-participantes.sh --dry-run
-./scripts/invite-participantes.sh
+./scripts/invite.sh --dry-run
+./scripts/invite.sh
