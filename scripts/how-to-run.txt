@@ -1,2 +1,5 @@
+python3 scripts/extract_usernames.py --dry-run
+python3 scripts/extract_usernames.py
+
 ./scripts/invite.sh --dry-run
 ./scripts/invite.sh
