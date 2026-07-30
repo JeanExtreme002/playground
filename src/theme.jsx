@@ -23,7 +23,7 @@ function buildPalette(mode) {
 
   return {
     mode,
-    primary: { main: light ? '#c5402a' : '#ff8a6b', contrastText: light ? '#ffffff' : '#1a1005' },
+    primary: { main: light ? '#2a7a4b' : '#6fd39b', contrastText: light ? '#ffffff' : '#05190f' },
     text: {
       primary: light ? '#16181d' : '#f2f0ee',
       secondary: light ? '#6d6a66' : '#a19d98',
