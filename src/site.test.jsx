@@ -40,6 +40,12 @@ describe('home page', () => {
     expect(link).toHaveAttribute('href', `https://github.com/${participant.github}`)
   })
 
+  it('points to the next stage on its own page', () => {
+    renderAt('/')
+
+    expect(screen.getByRole('link', { name: /ver o desafio/i })).toHaveAttribute('href', '/desafio')
+  })
+
   it('filters the list as the user types', async () => {
     const user = userEvent.setup()
     renderAt('/')
@@ -52,6 +58,14 @@ describe('home page', () => {
 })
 
 describe('routing', () => {
+  it('/desafio opens the keyword hunt, with the prompts to paste', () => {
+    renderAt('/desafio')
+
+    expect(screen.getByRole('heading', { name: /palavra-chave escondida/i })).toBeInTheDocument()
+    expect(screen.getByText(/veja os ultimos commits/i)).toBeInTheDocument()
+    expect(screen.getByText(/troque a minha mensagem no mural/i)).toBeInTheDocument()
+  })
+
   it('an unknown address falls back to the 404 page', () => {
     renderAt('/endereco-que-nao-existe')
     expect(screen.getByText(/pagina nao encontrada/i)).toBeInTheDocument()

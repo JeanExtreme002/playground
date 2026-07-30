@@ -33,6 +33,24 @@ mais "elegante".
 4. Se a pessoa já tiver um arquivo, **atualize o dela** em vez de criar um segundo.
 5. Não mexa em mais nada: nem no layout, nem no tema, nem no arquivo de outra pessoa.
 
+## O desafio da palavra-chave
+
+É a etapa seguinte ao primeiro Pull Request, apresentada na página `/desafio`
+(`src/pages/Challenge.jsx`), com os prompts que a pessoa cola aqui. A home só leva até ela por um
+botão. Existe uma palavra-chave escondida no **histórico do Git**: ela foi escrita em
+um commit e apagada em outro, então não está em nenhum arquivo da árvore atual. Procurar com `grep` na
+pasta do projeto não acha nada — e é de propósito.
+
+Quando a pessoa pedir para achar essa palavra, ou pedir para trocar o recado dela pela palavra-chave:
+
+1. Procure no histórico, não nos arquivos de hoje. `git log --oneline`,
+   `git log --diff-filter=D --name-only` (o que foi apagado e onde), `git show <commit>` e
+   `git log -p` resolvem. `git log -S <palavra>` acha o commit que mexeu em um texto específico.
+2. Achou? Troque **apenas** o `message` do arquivo dessa pessoa em `src/participants/`, e siga o
+   fluxo normal de branch nova e Pull Request novo.
+3. **Nunca** escreva a palavra-chave neste arquivo, no README ou em qualquer arquivo da árvore: isso
+   entregaria o desafio para todos os outros participantes de uma vez.
+
 ## Idioma
 
 | O quê                                                             | Idioma        |
@@ -63,9 +81,10 @@ src/
     Layout.jsx            <- cabecalho, container e rodape
     ParticipantRow.jsx    <- uma linha do mural: trofeu, nome, recado e @usuario
   pages/
-    Home.jsx              <- pagina unica: hero, os tres passos e o mural
+    Home.jsx              <- hero, os tres passos, o mural e o convite para o desafio
+    Challenge.jsx         <- /desafio: os prompts da caca a palavra-chave
     NotFound.jsx          <- 404
-  App.jsx                 <- as duas rotas: a home e o 404
+  App.jsx                 <- as rotas: a home, o /desafio e o 404
   site.test.jsx           <- confere a home (nomes, busca, link do GitHub) e o 404
   theme.jsx               <- tema global do MUI (claro/escuro)
   config.js               <- URL do repositorio
