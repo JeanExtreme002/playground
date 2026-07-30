@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it } from 'vitest'
 import App from './App.jsx'
+import { participants } from './participants/index.js'
 
 // Opens the site at a given route, as if the user had typed the URL.
 function renderAt(route = '/') {
@@ -16,34 +17,43 @@ function renderAt(route = '/') {
 describe('home page', () => {
   it('shows the headline', () => {
     renderAt('/')
-    expect(screen.getByRole('heading', { name: /seu primeiro projeto/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /seu nome no mural/i })).toBeInTheDocument()
   })
 
-  it('lists the projects, each linking to its own page', () => {
+  it('shows every name from the list', () => {
     renderAt('/')
-    const link = screen.getByRole('link', { name: /projeto exemplo/i })
-    expect(link).toHaveAttribute('href', '/sample')
+
+    for (const participant of participants) {
+      expect(screen.getByText(participant.name)).toBeInTheDocument()
+    }
+  })
+
+  // No name is hardcoded here on purpose: people come and go from the wall with
+  // every Pull Request, and nobody's PR should fail because of that.
+  it('links a participant to their github profile', () => {
+    renderAt('/')
+
+    const participant = participants.find((candidate) => candidate.github)
+    if (!participant) return
+
+    const link = screen.getByRole('link', { name: `@${participant.github}` })
+    expect(link).toHaveAttribute('href', `https://github.com/${participant.github}`)
   })
 
   it('filters the list as the user types', async () => {
     const user = userEvent.setup()
     renderAt('/')
 
-    await user.type(screen.getByPlaceholderText(/buscar projeto/i), 'zzz')
+    await user.type(screen.getByPlaceholderText(/buscar participante/i), 'zzz')
 
-    expect(screen.queryByRole('link', { name: /projeto exemplo/i })).not.toBeInTheDocument()
-    expect(screen.getByText(/nenhum projeto encontrado/i)).toBeInTheDocument()
+    expect(screen.queryByText(participants[0].name)).not.toBeInTheDocument()
+    expect(screen.getByText(/nenhum participante encontrado/i)).toBeInTheDocument()
   })
 })
 
 describe('routing', () => {
-  it('/sample opens the sample project', () => {
-    renderAt('/sample')
-    expect(screen.getByRole('heading', { name: 'Projeto Exemplo' })).toBeInTheDocument()
-  })
-
   it('an unknown address falls back to the 404 page', () => {
-    renderAt('/projeto-que-nao-existe')
+    renderAt('/endereco-que-nao-existe')
     expect(screen.getByText(/pagina nao encontrada/i)).toBeInTheDocument()
   })
 })
