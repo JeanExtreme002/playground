@@ -74,7 +74,7 @@ export default function Challenge() {
               placeItems: 'center',
               color: 'primary.main',
               bgcolor: (theme) =>
-                theme.palette.mode === 'light' ? 'rgba(197, 64, 42, 0.09)' : 'rgba(255, 138, 107, 0.13)',
+                theme.palette.mode === 'light' ? 'rgba(42, 122, 75, 0.09)' : 'rgba(111, 211, 155, 0.13)',
             }}
           >
             <ManageSearchOutlinedIcon sx={{ fontSize: 20 }} />
