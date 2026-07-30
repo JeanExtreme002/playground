@@ -3,3 +3,7 @@ python3 scripts/extract_usernames.py
 
 ./scripts/invite.sh --dry-run
 ./scripts/invite.sh
+
+./scripts/approve-prs.sh --dry-run
+./scripts/approve-prs.sh
+./scripts/approve-prs.sh --watch

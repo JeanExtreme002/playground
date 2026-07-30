@@ -164,6 +164,11 @@ Só quem administra o repositório usa (veja `scripts/how-to-run.txt`):
   escreve em `people.txt`.
 - `scripts/invite.sh` — convida todos do `people.txt` como colaboradores, para poderem enviar
   branches sem fork.
+- `scripts/approve-prs.sh` — aprova sozinho os Pull Requests prontos, para ninguém ficar esperando
+  revisão na fila. Só aprova quando o PR pediu review para você, as verificações passaram, não há
+  conflito com a `main` e a mudança está toda dentro de `src/participants/`. **Nunca faz merge**: esse
+  clique continua sendo do participante. Use `--watch` para ele ficar rodando durante a oficina e
+  `--dry-run` para ver o que aconteceria.
 
 ### Configuração do GitHub Pages (só o dono do repositório faz, uma vez)
 
