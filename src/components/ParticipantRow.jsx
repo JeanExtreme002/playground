@@ -29,7 +29,7 @@ export default function ParticipantRow({ participant, isFirst }) {
           display: 'grid',
           placeItems: 'center',
           color: 'primary.main',
-          bgcolor: (theme) => (theme.palette.mode === 'light' ? 'rgba(197, 64, 42, 0.09)' : 'rgba(255, 138, 107, 0.13)'),
+          bgcolor: (theme) => (theme.palette.mode === 'light' ? 'rgba(42, 122, 75, 0.09)' : 'rgba(111, 211, 155, 0.13)'),
         }}
       >
         <EmojiEventsOutlinedIcon sx={{ fontSize: 20 }} />
