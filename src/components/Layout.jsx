@@ -1,11 +1,14 @@
 import { AppBar, Box, Container, IconButton, Link, Stack, Toolbar, Tooltip, Typography } from '@mui/material'
-import CodeRoundedIcon from '@mui/icons-material/CodeRounded'
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'
 import { Link as RouterLink, Outlet } from 'react-router-dom'
+import ClaudeIcon from './ClaudeIcon.jsx'
 import { REPO_URL } from '../config.js'
 import { useColorMode } from '../theme.jsx'
+
+// Claude's own orange, on purpose: it stays out of the site's green theme.
+const CLAUDE_ORANGE = '#d97757'
 
 export default function Layout() {
   const { mode, toggle } = useColorMode()
@@ -40,11 +43,11 @@ export default function Layout() {
                   borderRadius: 2,
                   display: 'grid',
                   placeItems: 'center',
-                  bgcolor: 'primary.main',
-                  color: 'primary.contrastText',
+                  bgcolor: CLAUDE_ORANGE,
+                  color: '#ffffff',
                 }}
               >
-                <CodeRoundedIcon sx={{ fontSize: 19 }} />
+                <ClaudeIcon sx={{ fontSize: 19 }} />
               </Box>
               <Typography variant="h6" sx={{ letterSpacing: '-0.02em' }}>
                 Playground
