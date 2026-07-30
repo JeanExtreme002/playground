@@ -1,12 +1,14 @@
 import { useMemo, useState } from 'react'
-import { Box, Button, InputAdornment, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, Card, InputAdornment, Stack, TextField, Typography } from '@mui/material'
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
 import CallSplitOutlinedIcon from '@mui/icons-material/CallSplitOutlined'
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
 import GitHubIcon from '@mui/icons-material/GitHub'
+import ManageSearchOutlinedIcon from '@mui/icons-material/ManageSearchOutlined'
 import PublishedWithChangesOutlinedIcon from '@mui/icons-material/PublishedWithChangesOutlined'
 import SearchIcon from '@mui/icons-material/Search'
 import SearchOffOutlinedIcon from '@mui/icons-material/SearchOffOutlined'
+import { Link as RouterLink } from 'react-router-dom'
 import ParticipantRow from '../components/ParticipantRow.jsx'
 import { REPO_URL } from '../config.js'
 import { participants } from '../participants/index.js'
@@ -28,6 +30,7 @@ const STEPS = [
     text: 'Ao entrar na main, seu nome sobe para o mural em cerca de um minuto.',
   },
 ]
+
 
 export default function Home() {
   const [query, setQuery] = useState('')
@@ -181,6 +184,39 @@ export default function Home() {
             ))}
           </Box>
         )}
+      </Box>
+
+      {/* ── Call to the next stage, which lives on its own page ─────────── */}
+      <Box component="section" sx={{ width: '100%', maxWidth: 720, mx: 'auto' }}>
+        <Card sx={{ p: { xs: 2.5, sm: 3.5 } }}>
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={2.5}
+            alignItems={{ sm: 'center' }}
+            justifyContent="space-between"
+          >
+            <Box>
+              <Typography variant="overline" color="primary" display="block" gutterBottom>
+                PROXIMA ETAPA
+              </Typography>
+              <Typography variant="h6">A palavra-chave escondida</Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mt: 0.75 }}>
+                Ja esta no mural? Uma palavra-chave foi escrita em um commit deste repositorio e
+                apagada em outro. Ache ela no historico do Git.
+              </Typography>
+            </Box>
+
+            <Button
+              component={RouterLink}
+              to="/desafio"
+              variant="contained"
+              endIcon={<ManageSearchOutlinedIcon sx={{ fontSize: 18 }} />}
+              sx={{ flexShrink: 0 }}
+            >
+              Ver o desafio
+            </Button>
+          </Stack>
+        </Card>
       </Box>
     </Stack>
   )

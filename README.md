@@ -146,7 +146,8 @@ ou um componente usado sem `import`.
   ordena por nome. Ninguém precisa editar um arquivo central, então **não dá conflito de merge**
   entre os Pull Requests.
 - **`src/components/ParticipantRow.jsx`** — uma linha do mural: troféu, nome, recado e `@usuario`.
-- **`src/pages/Home.jsx`** — a página única: apresentação, os três passos e o mural.
+- **`src/pages/Home.jsx`** — a home: apresentação, os três passos, o mural e o convite para a etapa
+  seguinte, que fica em **`src/pages/Challenge.jsx`** (a página `/desafio`).
 - **`.github/workflows/deploy.yml`** — a cada push na `main`, o GitHub compila e publica no Pages.
 - **`.github/workflows/ci.yml`** — a cada Pull Request, roda os testes, o lint e confere se o site
   compila.
