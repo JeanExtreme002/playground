@@ -50,17 +50,17 @@ jobs:
           tipo: descricao em minusculas
           ```
 
-          **Publicando seu projeto na oficina? Use este:**
+          **Entrando no mural da oficina? Use este:**
 
           ```
-          feat: adiciona projeto de fulano
+          feat: adiciona fulano de tal ao mural
           ```
 
           Outros exemplos validos:
 
-          - `fix: corrige o link quebrado do projeto de beltrano`
+          - `fix: corrige o usuario do github de beltrano`
           - `docs: melhora as instrucoes do README`
-          - `feat(sample): adiciona um botao de tema no projeto exemplo`
+          - `feat(mural): adiciona um contador de participantes`
 
           Tipos aceitos: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`,
           `build`, `ci`, `chore`, `revert`.

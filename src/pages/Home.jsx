@@ -1,31 +1,31 @@
 import { useMemo, useState } from 'react'
 import { Box, Button, InputAdornment, Stack, TextField, Typography } from '@mui/material'
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
-import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined'
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import CallSplitOutlinedIcon from '@mui/icons-material/CallSplitOutlined'
+import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import PublishedWithChangesOutlinedIcon from '@mui/icons-material/PublishedWithChangesOutlined'
 import SearchIcon from '@mui/icons-material/Search'
 import SearchOffOutlinedIcon from '@mui/icons-material/SearchOffOutlined'
-import ProjectCard from '../components/ProjectCard.jsx'
+import ParticipantRow from '../components/ParticipantRow.jsx'
 import { REPO_URL } from '../config.js'
-import { projects } from '../projects/index.js'
+import { participants } from '../participants/index.js'
 
 const STEPS = [
   {
-    icon: ContentCopyOutlinedIcon,
-    title: 'Copie a pasta',
-    text: 'Duplique src/projects/sample e dê a ela o nome do seu projeto.',
+    icon: CallSplitOutlinedIcon,
+    title: 'Crie uma branch',
+    text: 'Clone o repositorio e crie um galho novo, so seu, para trabalhar em paz.',
   },
   {
-    icon: EditOutlinedIcon,
-    title: 'Edite o index.jsx',
-    text: 'Troque o conteúdo pelo seu. Componentes prontos do MUI a vontade.',
+    icon: DriveFileRenameOutlineOutlinedIcon,
+    title: 'Crie o seu arquivo',
+    text: 'Um arquivo com o seu nome em src/participants — a IA faz isso para voce.',
   },
   {
     icon: PublishedWithChangesOutlinedIcon,
     title: 'Abra o Pull Request',
-    text: 'Ao entrar na main, sua página sobe sozinha em cerca de um minuto.',
+    text: 'Ao entrar na main, seu nome sobe para o mural em cerca de um minuto.',
   },
 ]
 
@@ -34,10 +34,11 @@ export default function Home() {
 
   const filtered = useMemo(() => {
     const term = query.trim().toLowerCase()
-    if (!term) return projects
+    if (!term) return participants
 
-    return projects.filter((project) =>
-      [project.title, project.author, project.description, project.slug, ...project.tags]
+    return participants.filter((participant) =>
+      [participant.name, participant.github, participant.message]
+        .filter(Boolean)
         .join(' ')
         .toLowerCase()
         .includes(term),
@@ -45,7 +46,10 @@ export default function Home() {
   }, [query])
 
   return (
-    <Stack spacing={{ xs: 7, md: 10 }}>
+    // `useFlexGap` spaces the sections with `gap` instead of margins. Without it
+    // the Stack resets the children's margin, and `mx: 'auto'` on the wall of
+    // achievements below would never center it.
+    <Stack spacing={{ xs: 7, md: 10 }} useFlexGap>
       {/* ── Hero ────────────────────────────────────────────────────────── */}
       <Box component="section" sx={{ maxWidth: 660 }}>
         <Typography variant="overline" color="primary" display="block" gutterBottom>
@@ -53,27 +57,27 @@ export default function Home() {
         </Typography>
 
         <Typography variant="h1" gutterBottom>
-          Seu primeiro projeto
+          Seu nome no mural
           <Box component="span" sx={{ color: 'text.secondary' }}>
             {' '}
-            no ar.
+            de conquistas.
           </Box>
         </Typography>
 
         <Typography variant="subtitle1" color="text.secondary" sx={{ mt: 2.5, maxWidth: 560 }}>
-          Uma vitrine coletiva. Cada pessoa cria uma pasta, abre um Pull Request e ganha uma pagina
-          publicada na internet — com endereço próprio.
+          Aqui ficam as pessoas que abriram um Pull Request e conseguiram fazer o merge. O desafio e
+          esse: adicionar seu nome a lista e levar a mudanca ate a branch main.
         </Typography>
 
         <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap sx={{ mt: 4 }}>
           <Button
             variant="contained"
             endIcon={<ArrowOutwardIcon sx={{ fontSize: 16 }} />}
-            href={`${REPO_URL}#como-publicar-seu-projeto`}
+            href={`${REPO_URL}#como-entrar-no-mural`}
             target="_blank"
             rel="noreferrer"
           >
-            Publicar meu projeto
+            Entrar no mural
           </Button>
           <Button
             variant="text"
@@ -135,32 +139,26 @@ export default function Home() {
         })}
       </Box>
 
-      {/* ── Project list ────────────────────────────────────────────────── */}
-      <Box component="section">
-        <Stack
-          direction={{ xs: 'column', sm: 'row' }}
-          spacing={2}
-          alignItems={{ sm: 'baseline' }}
-          justifyContent="space-between"
-          sx={{ mb: 3.5 }}
-        >
+      {/* ── Wall of achievements: a single centered list ─────────────────── */}
+      <Box component="section" sx={{ width: '100%', maxWidth: 720, mx: 'auto' }}>
+        <Stack alignItems="center" spacing={2.5} sx={{ mb: 3.5 }}>
           <Stack direction="row" spacing={1.25} alignItems="baseline">
-            <Typography variant="h2">Projetos</Typography>
+            <Typography variant="h2">Mural de conquistas</Typography>
             <Typography
               variant="body2"
               color="text.disabled"
               sx={{ fontFamily: (theme) => theme.typography.fontFamilyMono }}
             >
-              {String(projects.length).padStart(2, '0')}
+              {String(participants.length).padStart(2, '0')}
             </Typography>
           </Stack>
 
           <TextField
             size="small"
-            placeholder="Buscar projeto, autor ou tag"
+            placeholder="Buscar participante"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            sx={{ minWidth: { sm: 300 } }}
+            sx={{ width: '100%', maxWidth: 340 }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -174,18 +172,12 @@ export default function Home() {
         {filtered.length === 0 ? (
           <Stack alignItems="center" spacing={1} sx={{ py: 8, border: 1, borderColor: 'divider', borderRadius: 3 }}>
             <SearchOffOutlinedIcon sx={{ fontSize: 30, color: 'text.disabled' }} />
-            <Typography color="text.secondary">Nenhum projeto encontrado para "{query}".</Typography>
+            <Typography color="text.secondary">Nenhum participante encontrado para "{query}".</Typography>
           </Stack>
         ) : (
-          <Box
-            sx={{
-              display: 'grid',
-              gap: 2.5,
-              gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' },
-            }}
-          >
-            {filtered.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+          <Box sx={{ border: 1, borderColor: 'divider', borderRadius: 3, overflow: 'hidden' }}>
+            {filtered.map((participant, index) => (
+              <ParticipantRow key={participant.name} participant={participant} isFirst={index === 0} />
             ))}
           </Box>
         )}

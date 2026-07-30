@@ -40,9 +40,8 @@ export default [
 
       // ── Heads-up only: these never fail the check ────────────────────────
       // Calling a hook inside an if/loop does break React — but this rule also
-      // fires on any component whose name starts lowercase, and a project
-      // named `meuProjeto` works fine here (the registry renders the default
-      // export as <Component />). Not worth blocking a PR over the naming.
+      // fires on any component whose name starts lowercase, which works fine
+      // here. Not worth blocking a PR over the naming.
       'react-hooks/rules-of-hooks': 'warn',
       // Leaving an unused import behind while trying things out is normal.
       'no-unused-vars': 'warn',

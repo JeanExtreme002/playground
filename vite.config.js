@@ -7,9 +7,9 @@ import react from '@vitejs/plugin-react'
 // path has to be prefixed with the repository name.
 const BASE = '/playground/'
 
-// GitHub Pages knows nothing about React routes (e.g. /playground/sample).
-// The classic fix: ship a copy of index.html as 404.html. Pages returns that
-// file for any unknown URL and React takes the route from there.
+// GitHub Pages knows nothing about React routes. The classic fix: ship a copy
+// of index.html as 404.html. Pages returns that file for any unknown URL and
+// React takes the route from there — that is how the 404 page shows up.
 function spaFallback() {
   return {
     name: 'spa-fallback-404',

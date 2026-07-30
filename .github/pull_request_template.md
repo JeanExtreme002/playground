@@ -1,8 +1,9 @@
 ## Sobre
 
-<!-- Conte em uma ou duas frases o que você fez. Se quiser, cole um print! -->
+<!-- Uma mensagem simples explicando esse PR -->
 
 ## Checklist
 
-- [ ] O arquivo `index.jsx` tem `export const meta` e `export default function`
-- [ ] O nome da pasta do projeto está em minúsculas, sem acentos e sem espaços
+- [ ] Criei **um arquivo novo** em `src/participants/` com o meu nome dentro
+- [ ] O arquivo tem `export const participant = { ... }` com o campo `name`
+- [ ] Não mexi no arquivo de outra pessoa nem no `index.js`

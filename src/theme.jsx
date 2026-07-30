@@ -38,8 +38,8 @@ function buildPalette(mode) {
 
 /**
  * Global theme: colors, fonts and the default look of every MUI component.
- * Projects render inside it, so they inherit the Playground identity and work
- * in both light and dark mode for free.
+ * Everything renders inside it, so the whole site works in both light and dark
+ * mode for free.
  */
 export function AppThemeProvider({ children }) {
   const [mode, setMode] = useState(getInitialMode)

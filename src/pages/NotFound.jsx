@@ -28,11 +28,11 @@ export default function NotFound() {
       <Typography variant="h2">Pagina nao encontrada</Typography>
 
       <Typography color="text.secondary" sx={{ maxWidth: 420 }}>
-        Esse projeto ainda nao existe por aqui. Que tal voltar e escolher um da lista?
+        Esse endereco nao existe por aqui. Que tal voltar para o mural de conquistas?
       </Typography>
 
       <Button component={RouterLink} to="/" variant="contained" startIcon={<ArrowBackIcon sx={{ fontSize: 16 }} />}>
-        Ver todos os projetos
+        Ver o mural
       </Button>
     </Stack>
   )
