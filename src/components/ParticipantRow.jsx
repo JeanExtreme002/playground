@@ -1,10 +1,20 @@
 import { Box, Link, Stack, Typography } from '@mui/material'
 import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined'
 import GitHubIcon from '@mui/icons-material/GitHub'
+import { isGolden } from './trophyTone.js'
+
+// Os dois tons possiveis do trofeu: o dourado e a cor do tema.
+const TROPHY = {
+  golden: { icon: ['#a87c10', '#e8c14a'], box: ['rgba(168, 124, 16, 0.12)', 'rgba(232, 193, 74, 0.15)'] },
+  theme: { icon: ['#2a7a4b', '#6fd39b'], box: ['rgba(42, 122, 75, 0.09)', 'rgba(111, 211, 155, 0.13)'] },
+}
 
 /** One line of the wall: trophy, name, message and the GitHub handle. */
 export default function ParticipantRow({ participant, isFirst }) {
   const { name, github, message } = participant
+
+  const tone = isGolden(message) ? TROPHY.golden : TROPHY.theme
+  const pick = (pair) => (theme) => (theme.palette.mode === 'light' ? pair[0] : pair[1])
 
   return (
     <Stack
@@ -28,8 +38,8 @@ export default function ParticipantRow({ participant, isFirst }) {
           borderRadius: 2,
           display: 'grid',
           placeItems: 'center',
-          color: 'primary.main',
-          bgcolor: (theme) => (theme.palette.mode === 'light' ? 'rgba(42, 122, 75, 0.09)' : 'rgba(111, 211, 155, 0.13)'),
+          color: pick(tone.icon),
+          bgcolor: pick(tone.box),
         }}
       >
         <EmojiEventsOutlinedIcon sx={{ fontSize: 20 }} />
