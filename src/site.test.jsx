@@ -62,7 +62,7 @@ describe('routing', () => {
     renderAt('/desafio')
 
     expect(screen.getByRole('heading', { name: /palavra-chave escondida/i })).toBeInTheDocument()
-    expect(screen.getByText(/veja os ultimos commits/i)).toBeInTheDocument()
+    expect(screen.getByText(/veja os últimos commits/i)).toBeInTheDocument()
     expect(screen.getByText(/troque a minha mensagem no mural/i)).toBeInTheDocument()
   })
 

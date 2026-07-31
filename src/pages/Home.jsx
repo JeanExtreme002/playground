@@ -68,8 +68,8 @@ export default function Home() {
         </Typography>
 
         <Typography variant="subtitle1" color="text.secondary" sx={{ mt: 2.5, maxWidth: 560 }}>
-          Aqui ficam as pessoas que abriram um Pull Request e conseguiram fazer o merge. O desafio e
-          esse: adicionar seu nome a lista e levar a mudanca ate a branch main.
+          Aqui ficam as pessoas que abriram um <b>Pull Request</b> e conseguiram fazer o merge. O desafio é
+          esse: adicionar seu nome à lista e levar a mudança até a <b>branch main.</b>
         </Typography>
 
         <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap sx={{ mt: 4 }}>
@@ -197,7 +197,7 @@ export default function Home() {
           >
             <Box>
               <Typography variant="overline" color="primary" display="block" gutterBottom>
-                PROXIMA ETAPA
+                PRÓXIMA ETAPA
               </Typography>
               <Typography variant="h6">A palavra-chave escondida</Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mt: 0.75 }}>
