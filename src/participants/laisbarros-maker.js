@@ -11,5 +11,5 @@
 export const participant = {
   name: 'Laís Barros',
   github: 'laisbarros-maker',
-  message: 'Meu primeiro Pull Request!',
+  message: 'Eureka',
 }
