@@ -1,4 +1,4 @@
 export const participant = {
-  name: 'Andre Crepaldi',
+  name: 'André Crepaldi',
   github: 'andre-crepaldi',
 }
