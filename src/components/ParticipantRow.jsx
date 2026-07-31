@@ -2,7 +2,11 @@ import { Box, Link, Stack, Typography } from '@mui/material'
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome'
 import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined'
 import GitHubIcon from '@mui/icons-material/GitHub'
+import LocalPizzaOutlinedIcon from '@mui/icons-material/LocalPizzaOutlined'
 import { isGolden } from './trophyTone.js'
+
+// Recadinho pessoal: um unico participante troca o trofeu por uma fatia de pizza.
+const PIZZA_GITHUB = 'v-fraga'
 
 // Os dois tons possiveis do trofeu: o dourado e a cor do tema.
 const TROPHY = {
@@ -41,6 +45,7 @@ export default function ParticipantRow({ participant, isFirst }) {
   const golden = isGolden(message)
   const tone = golden ? TROPHY.golden : TROPHY.theme
   const pick = (pair) => (theme) => (theme.palette.mode === 'light' ? pair[0] : pair[1])
+  const TrophyIcon = github === PIZZA_GITHUB ? LocalPizzaOutlinedIcon : EmojiEventsOutlinedIcon
 
   return (
     <Stack
@@ -70,7 +75,7 @@ export default function ParticipantRow({ participant, isFirst }) {
           ...(golden && GLOW),
         }}
       >
-        <EmojiEventsOutlinedIcon sx={{ fontSize: 20 }} />
+        <TrophyIcon sx={{ fontSize: 20 }} />
 
         {golden && (
           <>
