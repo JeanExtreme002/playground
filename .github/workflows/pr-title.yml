@@ -1,0 +1,75 @@
+name: Verificar titulo do PR
+
+# Confere se o titulo do Pull Request segue o padrao Conventional Commits
+# (https://www.conventionalcommits.org). O titulo importa porque, no merge
+# com squash, ele vira a mensagem do commit na branch main.
+#
+# Assim como o ci.yml, isto NAO publica nada e NAO afeta o site que ja esta
+# no ar: e apenas uma conferencia dentro do Pull Request.
+on:
+  pull_request:
+    branches: [main]
+    # `edited` faz a verificacao rodar de novo assim que o titulo for corrigido,
+    # sem precisar de um novo commit.
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  titulo:
+    name: Titulo do PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Conferir o formato do titulo
+        env:
+          # O titulo e escrito por quem abre o PR, ou seja, e texto que nao
+          # controlamos. Por isso ele entra no script como variavel de ambiente
+          # em vez de ser interpolado direto com ${{ }}, o que permitiria
+          # executar comandos no runner atraves de um titulo malicioso.
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          TYPES='feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert'
+          PATTERN="^($TYPES)(\([a-z0-9._/-]+\))?!?: .+"
+
+          if printf '%s' "$PR_TITLE" | grep -qE "$PATTERN"; then
+            echo "Titulo no padrao: $PR_TITLE"
+            exit 0
+          fi
+
+          echo "::error::O titulo do Pull Request nao segue o padrao Conventional Commits."
+
+          {
+            echo '## ❌ O titulo do Pull Request precisa de um ajuste'
+            echo
+            printf 'Titulo atual: `%s`\n\n' "$PR_TITLE"
+            cat <<'MARKDOWN'
+          Usamos o padrao [Conventional Commits](https://www.conventionalcommits.org/pt-br/):
+
+          ```
+          tipo: descricao em minusculas
+          ```
+
+          **Entrando no mural da oficina? Use este:**
+
+          ```
+          feat: adiciona fulano de tal ao mural
+          ```
+
+          Outros exemplos validos:
+
+          - `fix: corrige o usuario do github de beltrano`
+          - `docs: melhora as instrucoes do README`
+          - `feat(mural): adiciona um contador de participantes`
+
+          Tipos aceitos: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`,
+          `build`, `ci`, `chore`, `revert`.
+
+          ### Como corrigir
+
+          Clique em **Edit**, ao lado do titulo do Pull Request, ajuste o texto e salve.
+          Esta verificacao roda sozinha de novo — nao precisa de commit novo.
+          MARKDOWN
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          exit 1
