@@ -9,8 +9,8 @@ import { Link as RouterLink } from 'react-router-dom'
 // written nowhere in this repository: it only exists in the git history.
 const PROMPTS = [
   {
-    prompt: 'Veja os ultimos commits deste repositorio.',
-    hint: 'A IA roda git log e te mostra tudo o que ja aconteceu por aqui.',
+    prompt: 'Veja os últimos commits deste repositório.',
+    hint: 'A IA roda git log e te mostra tudo o que já aconteceu por aqui.',
   },
   {
     prompt: 'Encontre o commit que adiciona uma palavra-chave.',
@@ -27,7 +27,7 @@ const PROMPTS = [
 ]
 
 const COMMANDS = [
-  { command: 'git log --oneline', hint: 'a lista de tudo que ja aconteceu por aqui' },
+  { command: 'git log --oneline', hint: 'a lista de tudo que já aconteceu por aqui' },
   { command: 'git log --diff-filter=D --name-only', hint: 'quais arquivos foram apagados, e em qual commit' },
   { command: 'git show <commit>', hint: 'o que exatamente mudou naquele commit' },
 ]
@@ -56,7 +56,7 @@ export default function Challenge() {
         </Button>
 
         <Typography variant="overline" color="primary" display="block" gutterBottom>
-          PROXIMA ETAPA
+          PRÓXIMA ETAPA
         </Typography>
 
         <Typography variant="h2" component="h1">
@@ -81,9 +81,9 @@ export default function Challenge() {
           </Box>
 
           <Typography variant="body1" color="text.secondary">
-            Seu nome ja esta no mural? Entao vem a etapa seguinte. Uma palavra-chave foi escrita em um
-            commit deste repositorio e apagada em outro. Hoje ela nao esta em nenhum arquivo: procurar
-            na pasta do projeto nao acha nada. Ela existe so no historico do Git, que guarda tudo o que
+            Seu nome ja esta no mural? Então vem a etapa seguinte. Uma palavra-chave foi escrita em um
+            commit deste repositório e apagada em outro. Hoje ela não está em nenhum arquivo: procurar
+            na pasta do projeto não acha nada. Ela existe somente no histórico do Git, que guarda tudo o que
             um dia passou por aqui.
           </Typography>
         </Stack>
@@ -143,17 +143,17 @@ export default function Challenge() {
         </Card>
 
         <Typography variant="body2" color="text.secondary" sx={{ mt: 2.5 }}>
-          Achou? Nao conte para ninguem. Deixe cada pessoa achar a sua.
+          Achou? Shhh. Não conte para ninguém :)
         </Typography>
       </Box>
 
       {/* ── For whoever wants to dig with their own hands ───────────────── */}
       <Box component="section">
         <Typography variant="overline" color="text.secondary" display="block" gutterBottom>
-          PREFERE FAZER NA MAO?
+          PREFERE FAZER NA MÃO?
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          Os mesmos passos, direto no terminal. Sao estes comandos que a IA usa por baixo.
+          Os mesmos passos, direto no terminal. São estes comandos que a IA usa por de baixo dos panos.
         </Typography>
 
         {/* The commands live in an array so `<commit>` stays plain text. */}
