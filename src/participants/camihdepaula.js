@@ -11,5 +11,5 @@
 export const participant = {
   name: 'Camilla de Paula',
   github: 'camihdepaula',
-  message: 'testando testando',
+  message: 'Eureka',
 }
