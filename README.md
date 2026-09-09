@@ -186,3 +186,4 @@ Em **Settings → Pages → Build and deployment**, selecione **Source: GitHub A
 | A verificação do PR falhou (❌)                | Abra a aba **Checks** do Pull Request: a mensagem aponta a linha e o que corrigir (costuma ser uma vírgula). |
 | O título do PR foi reprovado                  | Use o formato `feat: adiciona seu nome ao mural`.                                                   |
 | A página fica em branco                       | Provavelmente falta uma chave ou uma vírgula no seu arquivo. Rode `npm run lint`.                    |
+
